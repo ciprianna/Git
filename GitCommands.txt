@@ -1,0 +1,83 @@
+This document will serve as your friendly companion as you progress through the Git Scavenger Hunt.
+
+It contains a number of commonly used git commands that will help as you explore Git. Besides using Google if you have specific questions about different commands, you can also use Git's internal documentation:
+
+git help <command>
+
+================================================
+COMMONLY USED COMMANDS
+================================================
+
+git init
+----------
+Will initialize a local Git repository in the current directory that you are in. This creates the .git folder that holds all of the magical things that Git does.
+
+git clone <location>
+----------
+<location> is the path to the remote repository that you want to have available locally. This assumes that there already exists a code base that you would like to work on.
+
+Cloning a remote repository will also setup links between the local and remote repos, allowing you to collaborate with others on a common code base and push/pull changes to a central location.
+
+git status
+----------
+Will shows you the current status of your repository. Files can be modified, deleted, untracked, or staged to be commited. 
+
+This is a very useful command that you should get in the habit of running to see what the current status of your repository is!
+
+git log
+----------
+Will show you the history of your repository. You can arrow down to see all previous commits. It will show the most recent ones.
+
+Each commit will have a hash ID that you can reference in other commands (such as git checkout <hashID>) along with a message describing what the commit involved.
+
+git add <files>
+----------
+When files are newly created or modified, they are not automatically included in the next commit. You have to manually add the files, allowing you to customize each commit.
+
+This can be a hassle everytime, so there are shortcuts, such as:
+
+ - git add .
+ - git add --all
+ - git commit -a -m "Your message here" (this is the shortcut way to do a commit; however, it won't work with newly added files. You will have to add those first, using git add . or git add <filename>)
+
+git commit
+----------
+Probably the most important command in Git since commiting files (or "snapshots") is the whole point of using a version control system. 
+
+There are multiple ways to use git commit. Generally, you want to first check git status to see if you have files staged to be commited (if not, use git add).
+
+1.) git commit - will open a text editor that will allow you to write a commit message
+
+2.) git commit -m "Your message" - will allow you to commit with a message in one line
+
+3.) git commit -a -m "Your message" - a very common, shortcut way of adding modified files to the staging area, and commiting them with a message, in one line.
+
+git diff
+----------
+Allows you to see what has changed in a file. There are multiple ways to use this, so explore the various options using Google or the help. However, a common way is to just use git diff (which will show the differences between your last commit and UNSTAGED files). 
+
+git branch <branch-name>
+----------
+Creates a new branch (which will have the same commit history up to that point in time).
+
+git checkout <branch-name>
+----------
+Allows you to navigate to a newly created branch. 
+
+Another usage pattern is to use git checkout <commitHASH>. With the <commitHASH> you can just begin using the first few digits/letters of the hash if you want to navigate to that commit.
+
+git merge <branch-name>
+----------
+Allows you to bring in changes from another branch into the branch you are currently on. 
+
+In some cases, you may have to resolve "merge conflicts", ie changes to files that you had almost made changes on. Otherwise, Git will perform what is called a "fast-forward" merge.
+
+git push origin <branch-name>
+----------
+Allows you to push the files you are working on to the remote repository that you setup with git clone. This way, your commits are backed up, and other people can pull down.
+
+NOTE: You can only push a commit if your commit history is a superset of the commit history of the remote repository. Otherwise, Git will inform you that you must resolve any conflicts.
+
+git pull
+----------
+If you are working on a project with multiple people, you should always use git pull to get an updated version of the project. That way, you aren't working on an old copy. 
